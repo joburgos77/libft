@@ -6,35 +6,31 @@
 /*   By: joburgos <joburgos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/11 11:38:26 by prerfil           #+#    #+#             */
-/*   Updated: 2024/12/12 13:53:21 by joburgos         ###   ########.fr       */
+/*   Updated: 2024/12/13 15:33:16 by joburgos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(char *str)
+int	ft_atoi(const char *str)
 {
 	int	sum;
 	int	sign;
-	int	found;
 
 	sum = 0;
 	sign = 1;
-	found = 1;
-	while (*str == ' ' || *str == '\t'
-		|| *str == '\n' || *str == '\f' || *str == '\r')
+	while (*str == ' ' || (*str >= '\t' && *str <= '\r'))
 		str++;
 	if (*str == '-')
 		sign = -1;
-	if (*str = '-' || *str = '+')
+	if (*str == '-' || *str == '+')
 		str++;
-	while (*str && found)
+	while (*str >= '0' && *str <= '9')
 	{
-		if (*str >= '0' && *str <= '9')
-			sum = sum * 10 + *str - '0';
-		else	found = 0;
+		sum = sum * 10 + (*str - '0');
 		str++;
 	}
+	return (sum * sign);
 }
 
 /*int main(void)
