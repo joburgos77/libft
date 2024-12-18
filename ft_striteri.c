@@ -1,29 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_striteri.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joburgos <joburgos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 13:53:45 by prerfil           #+#    #+#             */
-/*   Updated: 2024/12/18 10:40:38 by joburgos         ###   ########.fr       */
+/*   Created: 2024/12/18 07:59:19 by joburgos          #+#    #+#             */
+/*   Updated: 2024/12/18 08:53:30 by joburgos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t	count, size_t	size)
+void	ft_striteri(char *s, void (*f)(unsigned int, char*))
 {
-	void	*ptr;
+	int	i;
 
-	ptr = malloc(count * size);
-	if (ptr == 0)
-		return (0);
-	ft_bzero(ptr, count * size);
-	return (ptr);
+	i = 0;
+	while (s[i] != '\0')
+	{
+		f(i, &s[i]);
+		i++;
+	}
 }
 
-/*int main()
+/*int	main(void)
 {
-    return (0);
+	char	a[7];
+
+	a[0] = 'H';
+	a[1] = 'e';
+	a[2] = 'l';
+	a[3] = 'l';
+	a[4] = 'o';
+	a[5] = '!';
+	a[6] = '\n';
+	ft_striteri(a, &ft_toupper);
+	printf("Mapped string: '%s'\n", a);
+	return (0);
 }*/

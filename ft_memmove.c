@@ -6,7 +6,7 @@
 /*   By: joburgos <joburgos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/02 16:14:34 by joburgos          #+#    #+#             */
-/*   Updated: 2024/12/09 10:33:05 by joburgos         ###   ########.fr       */
+/*   Updated: 2024/12/18 11:09:59 by joburgos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	*ft_memmove(void *dest, const void *src, size_t n)
 
 	s = (const char *)src;
 	d = (char *)dest;
+	if (!dest && !src)
+		return (NULL);
 	if (s < d)
 	{
 		while (n--)

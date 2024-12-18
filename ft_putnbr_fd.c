@@ -1,29 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_calloc.c                                        :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joburgos <joburgos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/11 13:53:45 by prerfil           #+#    #+#             */
-/*   Updated: 2024/12/18 10:40:38 by joburgos         ###   ########.fr       */
+/*   Created: 2024/12/18 09:55:03 by joburgos          #+#    #+#             */
+/*   Updated: 2024/12/18 10:08:57 by joburgos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	*ft_calloc(size_t	count, size_t	size)
+void	ft_putnbr_fd(int n, int fd)
 {
-	void	*ptr;
-
-	ptr = malloc(count * size);
-	if (ptr == 0)
-		return (0);
-	ft_bzero(ptr, count * size);
-	return (ptr);
+	if (n == -2147483648)
+	{
+		ft_putstr_fd ("-2147483648", fd);
+		return ;
+	}
+	if (n < 0)
+	{
+		ft_putchar_fd ('-', fd);
+		n = -n;
+	}
+	if (n > 9)
+	{
+		ft_putnbr_fd (n / 10, fd);
+		ft_putchar_fd (n % 10 + '0', fd);
+	}
+	else
+	{
+		ft_putchar_fd (n + '0', fd);
+	}
 }
 
-/*int main()
+/*int	main(void)
 {
-    return (0);
+	int		n;
+	int		fd;
+
+	n = 42;
+	fd = 1;
+	ft_putnbr_fd(n, fd);
+	return (0);
 }*/

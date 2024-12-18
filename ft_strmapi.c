@@ -1,43 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: joburgos <joburgos@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/12/02 16:15:09 by joburgos          #+#    #+#             */
-/*   Updated: 2024/12/18 10:38:50 by joburgos         ###   ########.fr       */
+/*   Created: 2024/12/17 14:07:48 by joburgos          #+#    #+#             */
+/*   Updated: 2024/12/18 08:53:47 by joburgos         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dest, const char *src, size_t size)
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
-	size_t	i;
-	size_t	src_len;
+	char			*str;
+	size_t			len;
+	int				i;
 
 	i = 0;
-	src_len = ft_strlen(src);
-	if (size == 0)
-		return (src_len);
-	while (src[i] != '\0' && i < size - 1)
+	len = ft_strlen(s);
+	str = malloc(len +1);
+	if (str == 0)
+		return (0);
+	while (s[i] != '\0')
 	{
-		dest[i] = src[i];
+		str[i] = f(i, s[i]);
 		i++;
 	}
-	dest[i] = '\0';
-	return (src_len);
+	str[len] = '\0';
+	return (str);
 }
 
 /*int	main(void)
 {
-	char	src[] = "Hello World";
-	char	dest[20];
-	size_t	copied;
+	char	*s;
+	char	*result;
 
-	copied = ft_strlcpy(dest, src, sizeof(dest));
-	printf("Copied String: %s\n", dest);
-	printf("Lenght of the string: %zu\n", copied);
+	s = "Hello, world!";
+	result = ft_strmapi(s, &ft_toupper);
+	if (result)
+	{
+		printf("Mapped string: '%s\n", result);
+	}
+	else
+	{
+		printf("Failed to allocate memory for mapped string.\n");
+	}
 	return (0);
 }*/
